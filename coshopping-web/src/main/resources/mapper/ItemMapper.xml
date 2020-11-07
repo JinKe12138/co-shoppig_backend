@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sydney.edu.au.web.mapper.ItemMapper">
+
+    <!-- 分页条件查询商品列表-->
+    <select id="searchItems" resultType="sydney.edu.au.web.entity.Item">
+        SELECT
+        *
+        FROM
+        item
+        WHERE 1=1 and user_id=#{userId}
+        <if test="month != null and month != ''">
+            AND date_format(date,'%Y-%m')=#{month}
+        </if>
+        <if test="catName != null and catName != ''">
+            AND cat_name = #{catName}
+        </if>
+    </select>
+</mapper>
